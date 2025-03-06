@@ -1,11 +1,13 @@
 // @ts-types="npm:@types/express"
-import express from "npm:express"; 
+import express from "npm:express";
+import bodyParser from "npm:body-parser";
 
 const app = express();
 
 app.set("view engine", "ejs");
 
 app.use(express.static("static"));
+app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get("/", function (_, res) {
   res.render("pages/index");
@@ -29,6 +31,10 @@ app.get("/board", async function (_req, res) {
 
 app.get("/add_task", function (_req, res) {
   res.render("pages/add_task")
+})
+
+app.post("/add_task", function (req, _res) {
+  console.log(req.body?.title);
 })
 
 const port = Deno.env.get("PORT") || 8080;
