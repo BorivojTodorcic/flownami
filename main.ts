@@ -27,6 +27,10 @@ app.get("/board", async function (_req, res) {
   res.render("pages/board", { columns});
 });
 
+app.get("/add_task", function (_req, res) {
+  res.render("pages/add_task")
+})
+
 const port = Deno.env.get("PORT") || 8080;
 app.listen(port);
 console.log(`Server is listening on port ${port}`);
